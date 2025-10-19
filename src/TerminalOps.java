@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TerminalOps {
     public static void main(String[] args) {
@@ -62,6 +64,26 @@ public class TerminalOps {
         System.out.println(ans);
 
         //stateful and stateless Operation
+
+        //7.toArray()
+
+        Object[] array = Stream.of(1, 2, 3).toArray();
+
+        //8.min/max
+        int maxValue = Stream.of(2, 4, 69)
+                .max((a1,a2)->a1-a2)
+                .orElse(0);
+        System.out.println("Max: " + maxValue);
+
+        int minValue = Stream.of(2, 4, 69)
+                .min(Comparator.naturalOrder())
+                .orElse(0);
+        System.out.println("Min: " + minValue);
+
+        //9.forEachOrdered
+        List<Integer> number=Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+        System.out.println("Using ForEachOrdered with Parallel Stream :");
+        number.parallelStream().forEachOrdered(x-> System.out.println(x));
 
 
     }
